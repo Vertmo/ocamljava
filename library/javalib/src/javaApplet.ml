@@ -54,7 +54,7 @@ module type AWT = sig
 end
 
 module Default_AWT : AWT = struct
-  let applet_info    = !@"AWT applet"
+  let applet_info    = (JavaString.of_string "AWT applet")
   let parameter_info = parameter_info_of_list []
   let init _         = ()
   let start _        = ()
@@ -77,7 +77,7 @@ module type Swing = sig
 end
 
 module Default_Swing : Swing = struct
-  let applet_info    = !@"Swing applet"
+  let applet_info    = (JavaString.of_string "Swing applet")
   let parameter_info = parameter_info_of_list []
   let init _         = ()
   let start _        = ()
@@ -107,7 +107,7 @@ module type Graphics = sig
 end
 
 module Default_Graphics : Graphics = struct
-  let applet_info    = !@"Graphics applet"
+  let applet_info    = (JavaString.of_string "Graphics applet")
   let parameter_info = parameter_info_of_list []
   let init ()        = ()
   let start ()       = ()

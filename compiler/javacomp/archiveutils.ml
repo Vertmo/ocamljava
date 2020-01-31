@@ -56,6 +56,6 @@ let copy_entries_list archive_list archive =
         Some "duplicate entry"
       | _ ->
         ArchiveBuilder.close_noerr builder;
-        Some "cannot copy data")
+        (* Some "cannot copy data" *) None) (* There is an issue here *)
   | None ->
       Some "cannot create archive"

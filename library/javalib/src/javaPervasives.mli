@@ -21,18 +21,18 @@
     The module is automatically opened when {k -java-extensions} is
     passed to the {k ocamljava} compiler. *)
 
-external (|.) : ('a -> 'b) -> 'a -> 'b = "%apply"
-(** Akin to [Pervasives.(@@)], with a different priority allowing to
-    chain calls with parameters:
-    {[
-      Java.make "..."
-      |> Java.call "..." |. p1 |. ... |. pn
-      |> ...
-    ]} *)
-
-external (!@) : string -> java'lang'String java_instance =
-  "ocamljava_javastring_of_string"
-(** Synonym for {!JavaString.of_string}. *)
-
-val (^^^) : java'lang'String java_instance -> java'lang'String java_instance -> java'lang'String java_instance
-(** Concatenation of Java strings. *)
+(* external apply : ('a -> 'b) -> 'a -> 'b = "%apply"
+ * (\** Akin to [Pervasives.(@@)], with a different priority allowing to
+ *     chain calls with parameters:
+ *     {[
+ *       Java.make "..."
+ *       |> Java.call "..." |. p1 |. ... |. pn
+ *       |> ...
+ *     ]} *\)
+ * 
+ * external (!@) : string -> java'lang'String java_instance =
+ *   "ocamljava_javastring_of_string"
+ * (\** Synonym for {!JavaString.of_string}. *\)
+ * 
+ * val (^^^) : java'lang'String java_instance -> java'lang'String java_instance -> java'lang'String java_instance
+ * (\** Concatenation of Java strings. *\) *)

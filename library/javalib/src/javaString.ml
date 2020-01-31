@@ -16,6 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *)
 
+(* Conversion from/to OCaml strings *)
+
+external of_string : string -> _'String java_instance =
+  "ocamljava_javastring_of_string"
+
+external to_string : _'String java_instance -> string =
+  "ocamljava_javastring_to_string"
+
 
 (* OCaml-compatible signature *)
 
@@ -91,13 +99,13 @@ module OCaml = struct
           Java.exec "StringBuilder.append(char):StringBuilder" res 92;
           Java.exec "StringBuilder.append(char):StringBuilder" res ch
       | 10 (* new line *) ->
-          Java.exec "StringBuilder.append(String):StringBuilder" res !@"\\n"
+          Java.exec "StringBuilder.append(String):StringBuilder" res (of_string "\\n")
       | 9 (* tab *) ->
-          Java.exec "StringBuilder.append(String):StringBuilder" res !@"\\t"
+          Java.exec "StringBuilder.append(String):StringBuilder" res (of_string "\\t")
       | 13 (* carriage return *) ->
-          Java.exec "StringBuilder.append(String):StringBuilder" res !@"\\r"
+          Java.exec "StringBuilder.append(String):StringBuilder" res (of_string "\\r")
       | 8 (* backspace *) ->
-          Java.exec "StringBuilder.append(String):StringBuilder" res !@"\\b"
+          Java.exec "StringBuilder.append(String):StringBuilder" res (of_string "\\b")
       | _ ->
           Java.exec "StringBuilder.append(char):StringBuilder" res ch
     done;
@@ -233,15 +241,6 @@ let compare_to x y =
 
 let compare_to_ignore_case x y =
   Java.call "String.compareToIgnoreCase(String)" x y
-
-
-(* Conversion from/to OCaml strings *)
-
-external of_string : string -> _'String java_instance =
-  "ocamljava_javastring_of_string"
-
-external to_string : _'String java_instance -> string =
-  "ocamljava_javastring_to_string"
 
 
 (* Null value *)

@@ -17,13 +17,13 @@
  *)
 
 
-external (|.) : ('a -> 'b) -> 'a -> 'b = "%apply"
-
-external (!@) : string -> _'String java_instance =
-  "ocamljava_javastring_of_string"
-
-let (^^^) str1 str2 =
-  Java.make "StringBuilder()" ()
-  |> Java.call "StringBuilder.append(String):StringBuilder" |. str1
-  |> Java.call "StringBuilder.append(String):StringBuilder" |. str2
-  |> Java.call "StringBuilder.toString()"
+(* external (|.) : ('a -> 'b) -> 'a -> 'b = "%apply"
+ * 
+ * external (!@) : string -> _'String java_instance =
+ *   "ocamljava_javastring_of_string"
+ * 
+ * let (^^^) str1 str2 =
+ *   Java.make "StringBuilder()" ()
+ *   |> Java.call "StringBuilder.append(String):StringBuilder" |. str1
+ *   |> Java.call "StringBuilder.append(String):StringBuilder" |. str2
+ *   |> Java.call "StringBuilder.toString()" *)

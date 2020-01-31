@@ -264,6 +264,8 @@ let set : type a . t -> a field -> a -> t = fun cal f v ->
   | Dst_offset           -> Java.chain "Calendar.set(int,int)" cal f' (v : a :> java_int)
   | Zone_offset          -> Java.chain "Calendar.set(int,int)" cal f' (v : a :> java_int)
 
+external (|.) : ('a -> 'b) -> 'a -> 'b = "%apply"
+
 let clear cal f =
   copy cal
   |> Java.chain "Calendar.clear(int)" |. (java_int_of_field f)
